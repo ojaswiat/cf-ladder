@@ -35,6 +35,7 @@ using namespace std;
 
 // ---------------------- Math/Vector Macros ------------------------
 // Integer comparisons
+#define MOD 1000000007LL                   // 1e9 + 7, common prime modulus
 #define min2(a, b) ((a) < (b) ? (a) : (b)) // Minimum of 2 values
 #define max2(a, b) ((a) > (b) ? (a) : (b)) // Maximum of 2 values
 
@@ -57,6 +58,52 @@ const int INF = 1e18;       // Large number (infinity)
 const int MOD = 1e9 + 7;    // Common modulus
 const int MOD2 = 998244353; // Alternate modulus
 const int N = 2e5 + 5;      // Max array size
+
+// --------------------------- Modular Arithmetic ---------------------------
+// Safe mod that handles negatives too
+inline int mod(int a, int m = MOD)
+{
+    return ((a % m) + m) % m;
+}
+
+// Modular addition
+inline int mod_add(int a, int b, int m = MOD)
+{
+    return mod(mod(a, m) + mod(b, m), m);
+}
+
+// Modular subtraction
+inline int mod_sub(int a, int b, int m = MOD)
+{
+    return mod(mod(a, m) - mod(b, m), m);
+}
+
+// Modular multiplication
+inline int mod_mul(int a, int b, int m = MOD)
+{
+    return mod(mod(a, m) * mod(b, m), m);
+}
+
+// Modular exponentiation
+inline int mod_pow(int a, int b, int m = MOD)
+{
+    int res = 1;
+    a = mod(a, m);
+    while (b > 0)
+    {
+        if (b & 1)
+            res = mod_mul(res, a, m);
+        a = mod_mul(a, a, m);
+        b >>= 1;
+    }
+    return res;
+}
+
+// Modular inverse (only if m is prime)
+inline int mod_inv(int a, int m = MOD)
+{
+    return mod_pow(a, m - 2, m);
+}
 
 // --------------------------- Fast I/O ---------------------------
 void fast_io()
