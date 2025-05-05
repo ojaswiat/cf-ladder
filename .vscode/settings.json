@@ -47,5 +47,6 @@
         "variant": "cpp",
         "vector": "cpp",
         "algorithm": "cpp"
-    }
+    },
+    "editor.inlineSuggest.enabled": false,
 }
